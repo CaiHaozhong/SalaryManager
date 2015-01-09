@@ -1,8 +1,10 @@
 #include "Login.h"
-
+#include "AddEmployeePage.h"
 int main()
 {
-	Login* login = new Login;
-	login->show();
+	AddEmployeePage* a = new AddEmployeePage;
+	a->show();
+// 	Login* login = new Login;
+// 	login->show();
 	return Fl::run();
 }

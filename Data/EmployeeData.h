@@ -4,14 +4,13 @@ using namespace std;
 class EmployeeData
 {
 public:
-	EmployeeData(void);
-	~EmployeeData(void);
+	EmployeeData(string a, string b, string c, string d):personNum(a),personName(b),jobName(c),gender(d){};
+	~EmployeeData(void){}
 public:
 	string personNum;
 	string personName;
-	string department;
-	string job;
-	int gender;
+	string jobName;
+	string gender;
 
 };
 
