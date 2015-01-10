@@ -9,12 +9,56 @@
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Spinner.H>
 #include <FL/Fl_Button.H>
-
+#include<string>
+#include <vector>
+#include "Storage.h"
 class SalaryManagePage {
 public:
 	Fl_Window* container;
+
+	//添加工资类别
+	static Fl_Choice* departNameFC;
+	static Fl_Choice* jobNameFC;
+	static Fl_Input* salaryTypeIP;
+	static Fl_Spinner* moneyFS;
+
+	//生成工资表
+	static Fl_Input* numIP;
+
+	//部门平均工资
+	static Fl_Choice* departNameIP02;
+
 public:
   SalaryManagePage();
   void show();
+  static void buttonCallback(Fl_Widget* sender, void* data);
+  static void callback01()
+  {
+	  std::string depName = departNameFC->text();
+	  std::string jobName = jobNameFC->text();
+	  std::string salaryType = salaryTypeIP->value();
+	  double salary = moneyFS->value();
+	  Storage::getInstance()->addSalaryType(SalaryType(depName,salaryType,jobName,salary));
+  }
+  static void callback02(){}
+  static void callback03(){}
+  static void callback04(){}
+  static void callback05(){}
+
+  static void resetJobInput(std::string depart)
+  {
+	  jobNameFC->clear();
+	  std::vector<std::string> jobs = Storage::getInstance()->getJobName(depart);
+	  for(int i = 0; i < jobs.size(); i++)
+		  jobNameFC->add(jobs.at(i).c_str());
+	  jobNameFC->value(0);
+  }
+
+  static void departmentChoiceChangeCallback(Fl_Widget* sender, void* userdata)
+  {
+	  Fl_Choice* dFC = (Fl_Choice*)sender;
+	  resetJobInput(dFC->text());
+	  //std::cout << "callback";
+  }
 };
 #endif

@@ -1,0 +1,28 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window {} {
+    label {工资管理系统_by洪浩鹏} open
+    xywh {183 279 647 450} type Double box BORDER_BOX color 91 visible
+  } {
+    Fl_Button {} {
+      label {人员管理}
+      xywh {120 100 175 100} box ROUNDED_BOX
+    }
+    Fl_Button {} {
+      label {工资管理}
+      xywh {350 255 175 100} box ROUNDED_BOX
+    }
+    Fl_Button {} {
+      label {部门管理}
+      xywh {125 260 175 100} box ROUNDED_BOX
+    }
+    Fl_Button {} {
+      label {系统管理} selected
+      xywh {345 100 175 100} box ROUNDED_BOX
+    }
+  }
+} 

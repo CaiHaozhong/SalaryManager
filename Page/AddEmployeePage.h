@@ -39,7 +39,7 @@ public:
 			vector<string> departments = Storage::getInstance()->getAllDepartment();
 			for(int i = 0; i < departments.size(); i++)
 				o->add(departments.at(i).c_str());
-			o->value(3);
+			o->value(0);
 			o->down_box(FL_BORDER_BOX);
 			depaFC = o;
 			depaFC->callback((Fl_Callback*)AddEmployeePage::departmentChoiceChangeCallback,NULL);

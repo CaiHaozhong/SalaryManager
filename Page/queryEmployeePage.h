@@ -8,12 +8,82 @@
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Table.H>
+#include <stdio.h>
+#include <string.h>
+#ifdef WIN32
+#include <stdlib.h>	// atoi
+#endif /*WIN32*/
+#include <FL/Fl_Window.H>
+#include <FL/Fl_Check_Button.H>
+#include <FL/Fl_Choice.H>
+#include <FL/fl_draw.H>
+#include <FL/fl_ask.H>
+#include <FL/Fl_Table_Row.H>
+#include "EmployeeData.h"
+#include <vector>
+#include <string>
+
+// Simple demonstration class to derive from Fl_Table_Row
+class PersonTable : public Fl_Table_Row
+{
+private:
+	Fl_Color cell_bgcolor;				// color of cell's bg color
+	Fl_Color cell_fgcolor;				// color of cell's fg color
+	char* header[4];
+	std::vector< std::vector<std::string> > data;
+protected:
+	void draw_cell(TableContext context,  		// table cell drawing
+		int R=0, int C=0, int X=0, int Y=0, int W=0, int H=0);
+	static void event_callback(Fl_Widget*, void*);
+	void event_callback2();				// callback for table events
+
+public:
+	PersonTable(int x, int y, int w, int h, const char *l=0) : Fl_Table_Row(x,y,w,h,l)
+	{
+		cell_bgcolor = FL_WHITE;
+		cell_fgcolor = FL_BLACK;
+		callback(&event_callback, (void*)this);
+		header[0] = "PersonNum";
+		header[1] = "PersonName";
+		header[2] = "PersonGender";
+		header[3] = "PersonJob";
+		end();
+	}
+	~PersonTable() { }
+	Fl_Color GetCellFGColor() const { return(cell_fgcolor); }
+	Fl_Color GetCellBGColor() const { return(cell_bgcolor); }
+	void SetCellFGColor(Fl_Color val) { cell_fgcolor = val; }
+	void SetCellBGColor(Fl_Color val) { cell_bgcolor = val; }
+
+	void setData(std::vector<EmployeeData> d)
+	{
+		this->rows(0);
+		data.clear();
+		for (int i = 0; i < d.size(); i++)
+		{
+			std::vector<std::string> row;
+			EmployeeData ed = d.at(i);
+			row.push_back(ed.personNum);
+			row.push_back(ed.personName);
+			row.push_back(ed.gender);
+			row.push_back(ed.jobName);
+			data.push_back(row);
+		}
+		this->rows(d.size());
+	}
+};
+
 
 class QueryEmployeePage {
 public:
 	Fl_Double_Window* container;
+	static PersonTable* table;
+	static Fl_Input* userNumIP;
+	static Fl_Input* userNameIP;
 public:
 	QueryEmployeePage();
 	void show();
+	void initTable();
+	static void buttonCallBack(Fl_Widget* sender, void* userdata);
 };
 #endif

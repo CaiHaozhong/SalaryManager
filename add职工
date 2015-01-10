@@ -1,0 +1,41 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window {} {
+    label {添加职工} open
+    xywh {263 378 284 443} type Double visible
+  } {
+    Fl_Input {} {
+      label {名字：}
+      xywh {54 50 200 40}
+    }
+    Fl_Input {} {
+      label {编号：}
+      xywh {54 115 200 40}
+    }
+    Fl_Choice {} {
+      label {性别：} open
+      xywh {54 190 200 40} down_box UP_BOX
+    } {}
+    Fl_Choice {} {
+      label {部门：} open
+      xywh {54 255 200 40} down_box BORDER_BOX
+    } {}
+    Fl_Choice {} {
+      label {岗位：}
+      callback callback open selected
+      xywh {54 325 200 40} down_box BORDER_BOX when 1
+    } {}
+    Fl_Button {} {
+      label {确定}
+      xywh {45 400 64 40}
+    }
+    Fl_Button {} {
+      label {取消}
+      xywh {180 400 64 40}
+    }
+  }
+} 

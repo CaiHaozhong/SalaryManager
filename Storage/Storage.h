@@ -5,6 +5,7 @@
 #include "EmployeeData.h"
 #include "UserData.h"
 #include "Database.h"
+#include "SalaryType.h"
 using namespace std;
 class Storage
 {
@@ -113,6 +114,75 @@ public:
 		return ret;
 	}
 
+	const vector<EmployeeData> queryPersonByName(string name)
+	{
+		vector<EmployeeData> ret;
+		
+		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName FROM Person,Job WHERE Person.personName= '"+ name + "' AND Person.personJobNum = Job.jobNum";
+		//std::cout << sql;
+		//database->exec(sql);
+		try{
+		SQLite::Statement st(*database,sql);
+		//st.bind(1,depart);
+		while (st.executeStep())
+		{
+			string personNum = st.getColumn(0);
+			string personName = st.getColumn(1);
+			string personGender = st.getColumn(2);
+			string JobName = st.getColumn(3);
+			ret.push_back(EmployeeData(personNum,personName,JobName,personGender));
+		}
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 
+		return ret;
+	}
+
+	const vector<EmployeeData> queryPersonByNum(string num)
+	{
+		vector<EmployeeData> ret;
+		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName FROM Person,Job WHERE Person.personNum= '"+ num + "' AND Person.personJobNum = Job.jobNum";
+		//std::cout << sql;
+		//database->exec(sql);
+		try{
+			SQLite::Statement st(*database,sql);
+			//st.bind(1,depart);
+			while (st.executeStep())
+			{
+				string personNum = st.getColumn(0);
+				string personName = st.getColumn(1);
+				string personGender = st.getColumn(2);
+				string JobName = st.getColumn(3);
+				ret.push_back(EmployeeData(personNum,personName,JobName,personGender));
+			}
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		return ret;
+	}
+
+	bool addSalaryType(const SalaryType& data)
+	{
+		/*string departNum = database->execAndGet("SELECT Department.departmentNum FROM Department WHERE Department.departmentName = '" + data.departName +"'");*/
+		string jobNum = database->execAndGet("SELECT Job.jobNum FROM Job WHERE Job.jobName = '" + data.jobName +"'");
+		char money[128];
+		sprintf(money,"%lf",data.money);
+		string sql = "INSERT INTO Salary VALUES('" + jobNum + "','" + data.salaryType + "'," + string(money) + ")";
+		try
+		{
+			database->exec(sql);
+		}
+		catch (std::exception& e)
+		{
+			std::cout << "SQLite exception: " << e.what() << std::endl;
+			return false;
+		}		
+		return true;
+	}
 };
 

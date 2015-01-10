@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Data\EmployeeData.h" />
+    <ClInclude Include="Data\SalaryType.h" />
+    <ClInclude Include="Data\UserData.h" />
+    <ClInclude Include="Page\AddEmployeePage.h" />
+    <ClInclude Include="Page\HRPage.h" />
+    <ClInclude Include="Page\Login.h" />
+    <ClInclude Include="Page\MainPage.h" />
+    <ClInclude Include="Page\queryEmployeePage.h" />
+    <ClInclude Include="Page\salaryManagePage.h" />
+    <ClInclude Include="SQLiteCpp\Assertion.h" />
+    <ClInclude Include="SQLiteCpp\Column.h" />
+    <ClInclude Include="SQLiteCpp\Database.h" />
+    <ClInclude Include="SQLiteCpp\Exception.h" />
+    <ClInclude Include="SQLiteCpp\SQLiteCpp.h" />
+    <ClInclude Include="SQLiteCpp\Statement.h" />
+    <ClInclude Include="SQLiteCpp\Transaction.h" />
+    <ClInclude Include="sqlite\sqlite3.h" />
+    <ClInclude Include="Storage\Storage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Data\EmployeeData.cpp" />
+    <ClCompile Include="Data\SalaryType.cpp" />
+    <ClCompile Include="Data\UserData.cpp" />
+    <ClCompile Include="entry.cpp" />
+    <ClCompile Include="Page\AddEmployeePage.cpp" />
+    <ClCompile Include="Page\HRPage.cpp" />
+    <ClCompile Include="Page\Login.cpp" />
+    <ClCompile Include="Page\MainPage.cpp" />
+    <ClCompile Include="Page\queryEmployeePage.cxx" />
+    <ClCompile Include="Page\salaryManagePage.cxx" />
+    <ClCompile Include="SQLiteCpp\Column.cpp" />
+    <ClCompile Include="SQLiteCpp\Database.cpp" />
+    <ClCompile Include="SQLiteCpp\Statement.cpp" />
+    <ClCompile Include="SQLiteCpp\Transaction.cpp" />
+    <ClCompile Include="sqlite\sqlite3.c" />
+    <ClCompile Include="Storage\Storage.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{950095D6-BBC0-44B2-8A4B-48A8DDBF47AD}</ProjectGuid>
+    <RootNamespace>project</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);WIN32</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>sqlite;SQLiteCpp;Storage;Data;Page</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);fltkd.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

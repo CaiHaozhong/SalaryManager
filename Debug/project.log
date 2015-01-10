@@ -1,0 +1,54 @@
+﻿生成启动时间为 2015/1/10 22:43:02。
+     1>项目“F:\TestC\FLTK\project\project\project.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Install\VisualStudio\VC\bin\CL.exe /c /Isqlite /ISQLiteCpp /IStorage /IData /IPage /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /D _MBCS /D WIN32 /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Data\EmployeeData.cpp Data\SalaryType.cpp Page\AddEmployeePage.cpp Page\HRPage.cpp Page\Login.cpp Page\MainPage.cpp Page\queryEmployeePage.cxx Page\salaryManagePage.cxx Storage\Storage.cpp entry.cpp
+         salaryManagePage.cxx
+     1>d:\install\visualstudio\vc\include\fl\fl_spinner.h(106): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\install\visualstudio\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>d:\install\visualstudio\vc\include\fl\fl_spinner.h(111): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\install\visualstudio\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>d:\install\visualstudio\vc\include\fl\fl_spinner.h(113): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\install\visualstudio\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>f:\testc\fltk\project\project\sqlitecpp\column.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+     1>f:\testc\fltk\project\project\storage\storage.h(43): warning C4101: “e”: 未引用的局部变量
+     1>f:\testc\fltk\project\project\storage\storage.h(60): warning C4101: “e”: 未引用的局部变量
+     1>f:\testc\fltk\project\project\storage\storage.h(174): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 d:\install\visualstudio\vc\include\stdio.h(357) : 参见“sprintf”的声明
+     1>f:\testc\fltk\project\project\page\salarymanagepage.h(52): warning C4018: “<”: 有符号/无符号不匹配
+     1>f:\testc\fltk\project\project\page\salarymanagepage.cxx(38): warning C4018: “<”: 有符号/无符号不匹配
+         正在生成代码...
+         正在跳过...(未检测到相关更改)
+         EmployeeData.cpp
+         SalaryType.cpp
+         AddEmployeePage.cpp
+         HRPage.cpp
+         Login.cpp
+         MainPage.cpp
+         queryEmployeePage.cxx
+         Storage.cpp
+         entry.cpp
+         D:\Install\VisualStudio\VC\bin\CL.exe /c /Isqlite /ISQLiteCpp /IStorage /IData /IPage /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /D _MBCS /D WIN32 /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TC /analyze- /errorReport:prompt sqlite\sqlite3.c
+         sqlite3.c
+       Link:
+         D:\Install\VisualStudio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"F:\TestC\FLTK\project\Debug\project.exe" /INCREMENTAL /NOLOGO /LIBPATH:F:\TestC\FLTK\project\project\..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib fltkd.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"F:\TestC\FLTK\project\Debug\project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"F:\TestC\FLTK\project\Debug\project.lib" /MACHINE:X86 Debug\EmployeeData.obj
+         Debug\SalaryType.obj
+         Debug\UserData.obj
+         Debug\entry.obj
+         Debug\AddEmployeePage.obj
+         Debug\HRPage.obj
+         Debug\Login.obj
+         Debug\MainPage.obj
+         Debug\queryEmployeePage.obj
+         Debug\salaryManagePage.obj
+         Debug\Column.obj
+         Debug\Database.obj
+         Debug\Statement.obj
+         Debug\Transaction.obj
+         Debug\sqlite3.obj
+         Debug\Storage.obj
+         project.vcxproj -> F:\TestC\FLTK\project\Debug\project.exe
+     1>已完成生成项目“F:\TestC\FLTK\project\project\project.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:02.88

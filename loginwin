@@ -1,0 +1,34 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {} {open
+} {
+  Fl_Window {} {open selected
+    xywh {557 373 306 204} type Double visible
+  } {
+    Fl_Button {} {
+      label {登陆}
+      user_data 1
+      callback loginCallback
+      xywh {60 140 95 50}
+    }
+    Fl_Input {} {
+      label {用户名：}
+      xywh {65 32 232 36} labeltype SHADOW_LABEL
+    }
+    Fl_Input {} {
+      label {密码   ：}
+      xywh {65 84 232 36}
+    }
+    Fl_Button {} {
+      label {注册}
+      xywh {180 140 95 50}
+    }
+  }
+} 
+
+Function {loginCallback(Fl_Widget*, void*)} {open return_type {static void}
+} {
+  code {printf("Hello, World!\\n");} {}
+} 

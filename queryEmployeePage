@@ -1,0 +1,41 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+class queryEmployeePage {open
+} {
+  Function {queryEmployeePage()} {open
+  } {
+    Fl_Window {} {
+      label {员工管理} open selected
+      xywh {432 326 541 513} type Double visible
+    } {
+      Fl_Box {} {
+        xywh {45 60 465 200} box THIN_UP_BOX color 34
+      }
+      Fl_Input {} {
+        label {员工编号：}
+        xywh {129 95 200 40}
+      }
+      Fl_Button {} {
+        label {按编号查询}
+        xywh {345 95 125 45}
+      }
+      Fl_Box {} {
+        label {查询员工}
+        xywh {195 14 119 31} labelsize 32
+      }
+      Fl_Input {} {
+        label {员工编号：}
+        xywh {129 170 200 40}
+      }
+      Fl_Button {} {
+        label {按编号查询}
+        xywh {345 170 125 45}
+      }
+      Fl_Table {} {open
+        xywh {45 285 465 185}
+      } {}
+    }
+  }
+} 
