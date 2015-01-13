@@ -1,0 +1,55 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+class ShouldAddAndSubPage {open
+} {
+  Function {ShouldAddAndSubPage()} {open
+  } {
+    Fl_Window {} {
+      label {应增应减} open selected
+      xywh {177 235 535 433} type Double visible
+    } {
+      Fl_Input personNumIP {
+        label {员工编号：}
+        xywh {105 22 255 43}
+      }
+      Fl_Button {} {
+        label {查询员工}
+        xywh {415 22 90 43}
+      }
+      Fl_Group {} {
+        label {员工信息} open
+        xywh {30 100 480 100} box FLAT_BOX color 174
+      } {}
+      Fl_Input addsubIP {
+        label {应增应减：}
+        xywh {105 231 162 43}
+      }
+      Fl_Spinner moneySP {
+        label {金额：}
+        xywh {340 231 162 43} maximum 100000
+      }
+      Fl_Spinner yearSP {
+        label {年：}
+        xywh {65 301 105 43} maximum 3000 value 2015
+      }
+      Fl_Spinner monthSP {
+        label {月：}
+        xywh {235 301 105 43} maximum 12
+      }
+      Fl_Spinner daySP {
+        label {日：}
+        xywh {397 301 105 43} maximum 31
+      }
+      Fl_Button {} {
+        label {确定}
+        xywh {105 372 90 43} deactivate
+      }
+      Fl_Button {} {
+        label {取消}
+        xywh {330 372 90 43}
+      }
+    }
+  }
+} 

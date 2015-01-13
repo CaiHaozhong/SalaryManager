@@ -20,11 +20,12 @@ Fl_Input* SalaryManagePage:: numIP = NULL;
 //部门平均工资
 Fl_Choice* SalaryManagePage:: departNameIP02 = NULL;
 
+
 SalaryManagePage::SalaryManagePage() {
   { 
 		Fl_Double_Window* o = new Fl_Double_Window(505, 605, "\345\267\245\350\265\204\347\256\241\347\220\206");
 		container = o;
-		container->color((Fl_Color)91);
+		container->color((Fl_Color)81);
 		o->user_data((void*)(this));
 		{ 
 			  Fl_Group* o = new Fl_Group(40, 40, 425, 230, "\345\267\245\350\265\204\347\261\273\345\210\253");
@@ -75,11 +76,11 @@ SalaryManagePage::SalaryManagePage() {
 			  } 
 			  { 
 				  Fl_Button * bt = new Fl_Button (350, 407, 98, 40, "\345\272\224\345\242\236\345\272\224\345\207\217");
-				  bt->callback((Fl_Callback*)SalaryManagePage::buttonCallback,(void*)COMPUTE_AV_SALARY);
+				  bt->callback((Fl_Callback*)SalaryManagePage::buttonCallback,(void*)ADD_AND_SUB);
 			  } 
 			  { 
 				  Fl_Button * bt = new Fl_Button (200, 407, 115, 40, "\350\256\241\347\256\227\345\271\264\345\271\263\345\235\207\345\267\245\350\265\204");
-				  bt->callback((Fl_Callback*)SalaryManagePage::buttonCallback,(void*)ADD_AND_SUB);
+				  bt->callback((Fl_Callback*)SalaryManagePage::buttonCallback,(void*)COMPUTE_AV_SALARY);
 			  } 
 			  o->end();
 		} 
@@ -89,6 +90,10 @@ SalaryManagePage::SalaryManagePage() {
 			  o->color((Fl_Color)132);
 			  { 
 				  Fl_Choice* o = new Fl_Choice(120, 512, 224, 40, "\351\203\250\351\227\250\345\220\215\347\247\260\357\274\232");
+				  vector<string> departments = Storage::getInstance()->getAllDepartment();
+				  for(int i = 0; i < departments.size(); i++)
+					  o->add(departments.at(i).c_str());
+				  o->value(0);
 				  departNameIP02 = o;
 				  o->down_box(FL_BORDER_BOX);
 			  } 
@@ -130,4 +135,24 @@ void SalaryManagePage::buttonCallback( Fl_Widget* sender, void* data )
 	default:
 		break;
 	}
+}
+
+void SalaryManagePage::callback01()
+{
+	std::string depName = departNameFC->text();
+	std::string jobName = jobNameFC->text();
+	std::string salaryType = salaryTypeIP->value();
+	double salary = moneyFS->value();
+	Storage::getInstance()->addSalaryType(SalaryType(depName,salaryType,jobName,salary));
+}
+
+void SalaryManagePage::callback02()
+{
+	makeSalaryWindow(numIP->value()); 	
+}
+
+void SalaryManagePage::callback04()
+{
+	ShouldAddAndSubPage* sp = new ShouldAddAndSubPage;
+	sp->show();
 }

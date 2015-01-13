@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data\AlterationData.h" />
     <ClInclude Include="Data\EmployeeData.h" />
     <ClInclude Include="Data\SalaryType.h" />
     <ClInclude Include="Data\UserData.h" />
@@ -19,7 +20,9 @@
     <ClInclude Include="Page\Login.h" />
     <ClInclude Include="Page\MainPage.h" />
     <ClInclude Include="Page\queryEmployeePage.h" />
+    <ClInclude Include="Page\salaryDisplayPage.h" />
     <ClInclude Include="Page\salaryManagePage.h" />
+    <ClInclude Include="Page\ShouldAddAndSubPage.h" />
     <ClInclude Include="SQLiteCpp\Assertion.h" />
     <ClInclude Include="SQLiteCpp\Column.h" />
     <ClInclude Include="SQLiteCpp\Database.h" />
@@ -31,6 +34,7 @@
     <ClInclude Include="Storage\Storage.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Data\AlterationData.cpp" />
     <ClCompile Include="Data\EmployeeData.cpp" />
     <ClCompile Include="Data\SalaryType.cpp" />
     <ClCompile Include="Data\UserData.cpp" />
@@ -40,7 +44,9 @@
     <ClCompile Include="Page\Login.cpp" />
     <ClCompile Include="Page\MainPage.cpp" />
     <ClCompile Include="Page\queryEmployeePage.cxx" />
+    <ClCompile Include="Page\salaryDisplayPage.cxx" />
     <ClCompile Include="Page\salaryManagePage.cxx" />
+    <ClCompile Include="Page\ShouldAddAndSubPage.cxx" />
     <ClCompile Include="SQLiteCpp\Column.cpp" />
     <ClCompile Include="SQLiteCpp\Database.cpp" />
     <ClCompile Include="SQLiteCpp\Statement.cpp" />

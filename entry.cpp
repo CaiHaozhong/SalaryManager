@@ -4,9 +4,9 @@
 #include "salaryManagePage.h"
 int main()
 {
-	SalaryManagePage* a = new SalaryManagePage;
-	a->show();
-// 	Login* login = new Login;
-// 	login->show();
+// 	QueryEmployeePage* a = new QueryEmployeePage;
+// 	a->show();
+	Login* login = new Login;
+	login->show();
 	return Fl::run();
 }

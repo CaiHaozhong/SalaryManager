@@ -6,6 +6,7 @@
 #include "UserData.h"
 #include "Database.h"
 #include "SalaryType.h"
+#include "AlterationData.h"
 using namespace std;
 class Storage
 {
@@ -32,7 +33,7 @@ public:
 		return instance;
 	}
 
-	bool addNewPerson(const EmployeeData& data){}
+/*	bool addNewPerson(const EmployeeData& data){}*/
 
 	bool login(const UserData& data)
 	{
@@ -118,7 +119,7 @@ public:
 	{
 		vector<EmployeeData> ret;
 		
-		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName FROM Person,Job WHERE Person.personName= '"+ name + "' AND Person.personJobNum = Job.jobNum";
+		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName, Department.departmentName FROM Person,Job,Department WHERE Person.personName= '"+ name + "' AND Person.personJobNum = Job.jobNum AND Department.departmentNum = Job.departmentNum";
 		//std::cout << sql;
 		//database->exec(sql);
 		try{
@@ -130,7 +131,9 @@ public:
 			string personName = st.getColumn(1);
 			string personGender = st.getColumn(2);
 			string JobName = st.getColumn(3);
-			ret.push_back(EmployeeData(personNum,personName,JobName,personGender));
+			EmployeeData ed = EmployeeData(personNum,personName,JobName,personGender);
+			ed.departName = st.getColumn(4);
+			ret.push_back(ed);
 		}
 		}
 		catch(std::exception& e)
@@ -144,7 +147,7 @@ public:
 	const vector<EmployeeData> queryPersonByNum(string num)
 	{
 		vector<EmployeeData> ret;
-		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName FROM Person,Job WHERE Person.personNum= '"+ num + "' AND Person.personJobNum = Job.jobNum";
+		string sql = "SELECT Person.personNum, Person.personName, Person.personGender, Job.JobName, Department.departmentName FROM Person,Job,Department WHERE Person.personNum= '"+ num + "' AND Person.personJobNum = Job.jobNum AND Department.departmentNum = Job.departmentNum";
 		//std::cout << sql;
 		//database->exec(sql);
 		try{
@@ -156,7 +159,9 @@ public:
 				string personName = st.getColumn(1);
 				string personGender = st.getColumn(2);
 				string JobName = st.getColumn(3);
-				ret.push_back(EmployeeData(personNum,personName,JobName,personGender));
+				EmployeeData ed = EmployeeData(personNum,personName,JobName,personGender);
+				ed.departName = st.getColumn(4);
+				ret.push_back(ed);
 			}
 		}
 		catch(std::exception& e)
@@ -183,6 +188,116 @@ public:
 			return false;
 		}		
 		return true;
+	}
+
+	const vector<SalaryType> queryAlterationByNum(string num)
+	{
+		vector<SalaryType> ret;
+		string sql = "SELECT Alteration.alterationName, Alteration.money, Alteration.alterDay FROM Alteration WHERE Alteration.personNum= '"+ num + "'";// AND Person.personJobNum = Job.jobNum";
+		//std::cout << sql;
+		//database->exec(sql);
+		try{
+			SQLite::Statement st(*database,sql);
+			//st.bind(1,depart);
+			while (st.executeStep())
+			{
+				string alterationName = st.getColumn(0);
+				double money = st.getColumn(1);
+				string alterDay = st.getColumn(2);
+				SalaryType salaryType("",alterationName,"",money);
+				salaryType.additionDate = alterDay;
+				ret.push_back(salaryType);
+			}
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		return ret;
+	}
+
+	const vector<SalaryType> querySalaryByNum(string num)
+	{
+		vector<SalaryType> ret;
+		string sql = "SELECT Salary.salaryType, Salary.money FROM Salary,Person WHERE Person.personNum= '"+ num + "' AND Person.personJobNum = Salary.jobNum";
+		//std::cout << sql;
+		//database->exec(sql);
+		try{
+			SQLite::Statement st(*database,sql);
+			//st.bind(1,depart);
+			while (st.executeStep())
+			{
+				string alterationName = st.getColumn(0);
+				double money = st.getColumn(1);
+				SalaryType salaryType("",alterationName,"",money);
+				ret.push_back(salaryType);
+			}
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		return ret;
+	}
+	bool addAlteration(const AlterationData& data)
+	{
+		/*string departNum = database->execAndGet("SELECT Department.departmentNum FROM Department WHERE Department.departmentName = '" + data.departName +"'");*/
+		//string jobNum = database->execAndGet("SELECT Job.jobNum FROM Job WHERE Job.jobName = '" + data.jobName +"'");
+		char money[128];
+		sprintf(money,"%lf",data.alterationMoney);
+		string sql = "INSERT INTO Alteration VALUES('" + data.personNum + "','" + data.alterationName + "'," + string(money) + ",'" + data.alterationDay + "')";
+		try
+		{
+			database->exec(sql);
+		}
+		catch (std::exception& e)
+		{
+			std::cout << "SQLite exception: " << e.what() << std::endl;
+			return false;
+		}
+		return true;
+	}
+
+	/*
+	获得部门人数
+	*/
+	int getDepartMemberCount(string departmentName)
+	{
+		int ret = 0;
+		string sql = "SELECT Department.personCount FROM Department WHERE Department.departmentName= '"+ departmentName + "'";
+		//std::cout << sql;
+		//database->exec(sql);
+		try{
+			SQLite::Statement st(*database,sql);
+			//st.bind(1,depart);
+			st.executeStep();			
+			ret = st.getColumn(0);
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		return ret;
+	}
+
+	/*
+	根据部门名字得到部门的平均工资
+	*/
+	double getAverageSalaryFromDepartmentName(string departmentName)
+	{
+		double ret = 0;
+		string sql = "SELECT AVG(Salary.money) FROM Department,Job,Salary WHERE Department.departmentName= '"+ departmentName + "' AND Job.departmentNum = Department.departmentNum AND Salary.jobNum = Job.jobNum AND Salary.salaryType = '" + string("\345\237\272\346\234\254\345\267\245\350\265\204"/*基本工资*/) + "'";
+		try{
+			SQLite::Statement st(*database,sql);
+			//st.bind(1,depart);
+			st.executeStep();			
+			ret = st.getColumn(0);
+		}
+		catch(std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+		return ret;
 	}
 };
 

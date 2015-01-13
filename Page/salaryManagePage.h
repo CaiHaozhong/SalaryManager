@@ -12,6 +12,14 @@
 #include<string>
 #include <vector>
 #include "Storage.h"
+#include <FL/Fl_Table_Row.H>
+#include <FL/fl_draw.H>
+#include <FL/fl_ask.H>
+#include "Storage.h"
+#include "salaryDisplayPage.h"
+#include "ShouldAddAndSubPage.h"
+
+// Simple demonstration class to derive from Fl_Table_Row
 class SalaryManagePage {
 public:
 	Fl_Window* container;
@@ -28,37 +36,82 @@ public:
 	//部门平均工资
 	static Fl_Choice* departNameIP02;
 
+
+
 public:
-  SalaryManagePage();
-  void show();
-  static void buttonCallback(Fl_Widget* sender, void* data);
-  static void callback01()
-  {
-	  std::string depName = departNameFC->text();
-	  std::string jobName = jobNameFC->text();
-	  std::string salaryType = salaryTypeIP->value();
-	  double salary = moneyFS->value();
-	  Storage::getInstance()->addSalaryType(SalaryType(depName,salaryType,jobName,salary));
-  }
-  static void callback02(){}
-  static void callback03(){}
-  static void callback04(){}
-  static void callback05(){}
+	SalaryManagePage();
+	void show();
+	static void buttonCallback(Fl_Widget* sender, void* data);
+	static void callback01();
+	static void callback02();
+	static void callback03(){}
+	static void callback04();
+	static void callback05()
+	{
+		make_av_window(departNameIP02->text())->show();
+	}
+	static Fl_Double_Window* make_av_window(string departName)
+	{
+		Fl_Double_Window* w;
+		{ Fl_Double_Window* o = new Fl_Double_Window(452, 259, "\345\237\272\346\234\254\345\267\245\350\265\204");
+		w = o;
+		{ Fl_Group* o = new Fl_Group(30, 20, 400, 50);
+		o->box(FL_FLAT_BOX);
+		o->color((Fl_Color)159);
+		{ new Fl_Box(30, 20, 120, 50, "\351\203\250\351\227\250\345\220\215\347\247\260\357\274\232");
+		} // Fl_Box* o
+		{ new Fl_Box(255, 20, 120, 50, "\351\203\250\351\227\250\344\272\272\346\225\260\357\274\232");
+		} // Fl_Box* o
+		{ Fl_Box *departmentNameBox = new Fl_Box(120, 20, 150, 50);
+		departmentNameBox->copy_label(departName.c_str());
+		} // Fl_Box* departmentNameBox
+		{ Fl_Box *personCountBox = new Fl_Box(355, 20, 55, 50);
+		int personCount = Storage::getInstance()->getDepartMemberCount(departName);
+		char str[20];
+		sprintf(str,"%d",personCount);
+		personCountBox->copy_label(str);
+		} // Fl_Box* personCountBox
+		o->end();
+		} // Fl_Group* o
+		{ new Fl_Box(100, 104, 120, 56, "\351\203\250\351\227\250\345\271\263\345\235\207\345\267\245\350\265\204\357\274\232");
+		} // Fl_Box* o
+		{Fl_Button* bt = new Fl_Button(165, 180, 110, 50, "\347\241\256\345\256\232");
+		bt->callback((Fl_Callback*)SalaryManagePage::avgWindowBtCallback,NULL);
+		} // Fl_Button* o
+		{ Fl_Box *avgSalaryBox = new Fl_Box(205, 104, 125, 56);
+		double avg = Storage::getInstance()->getAverageSalaryFromDepartmentName(departName);
+		char str[20];
+		sprintf(str,"%lf",avg);
+		avgSalaryBox->copy_label(str);
+		} // Fl_Box* avgSalaryBox
+		o->end();
+		} // Fl_Double_Window* o
+		return w;
+	}
+	static void makeSalaryWindow(string personNum)
+	{
+		SalaryDisplayPage* page = new SalaryDisplayPage(personNum);
+		page->show();
+	}
 
-  static void resetJobInput(std::string depart)
-  {
-	  jobNameFC->clear();
-	  std::vector<std::string> jobs = Storage::getInstance()->getJobName(depart);
-	  for(int i = 0; i < jobs.size(); i++)
-		  jobNameFC->add(jobs.at(i).c_str());
-	  jobNameFC->value(0);
-  }
+	static void resetJobInput(std::string depart)
+	{
+		jobNameFC->clear();
+		std::vector<std::string> jobs = Storage::getInstance()->getJobName(depart);
+		for(int i = 0; i < jobs.size(); i++)
+			jobNameFC->add(jobs.at(i).c_str());
+		jobNameFC->value(0);
+	}
 
-  static void departmentChoiceChangeCallback(Fl_Widget* sender, void* userdata)
-  {
-	  Fl_Choice* dFC = (Fl_Choice*)sender;
-	  resetJobInput(dFC->text());
-	  //std::cout << "callback";
-  }
+	static void departmentChoiceChangeCallback(Fl_Widget* sender, void* userdata)
+	{
+		Fl_Choice* dFC = (Fl_Choice*)sender;
+		resetJobInput(dFC->text());
+		//std::cout << "callback";
+	}
+	static void avgWindowBtCallback(Fl_Widget* sender, void* userdata)
+	{
+		sender->parent()->hide();
+	}
 };
 #endif

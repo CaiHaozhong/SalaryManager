@@ -1,0 +1,53 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window {} {
+    label {员工工资} open
+    xywh {187 255 561 400} type Double visible
+  } {
+    Fl_Table {} {
+      label {员工工资表} open
+      xywh {25 155 520 215}
+    } {
+      Fl_Table {} {
+        xywh {50 180 15 15}
+      } {}
+    }
+    Fl_Group {} {
+      label {员工信息} open selected
+      xywh {25 25 520 105} box FLAT_BOX color 166
+    } {
+      Fl_Box {} {
+        label {名字：}
+        xywh {45 38 65 29}
+      }
+      Fl_Box personNameBox {
+        xywh {120 38 65 29}
+      }
+      Fl_Box {} {
+        label {部门：}
+        xywh {45 81 65 29}
+      }
+      Fl_Box departNameBox {
+        xywh {120 81 65 29}
+      }
+      Fl_Box {} {
+        label {职位：}
+        xywh {260 81 65 29}
+      }
+      Fl_Box jobNameBox {
+        xywh {330 81 65 29}
+      }
+      Fl_Box {} {
+        label {性别：}
+        xywh {260 38 65 29}
+      }
+      Fl_Box personGenderBox {
+        xywh {330 38 65 29}
+      }
+    }
+  }
+} 

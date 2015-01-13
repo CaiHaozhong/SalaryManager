@@ -19,10 +19,10 @@ QueryEmployeePage::QueryEmployeePage() {
 		o->color((Fl_Color)76);
     } // Fl_Box* o
     { 
-		userNameIP = new Fl_Input(129, 95, 200, 40, "\345\221\230\345\267\245\347\274\226\345\217\267\357\274\232");
+		userNameIP = new Fl_Input(129, 95, 200, 40, "\345\221\230\345\267\245\345\220\215\345\255\227\357\274\232");
     } // Fl_Input* o
     { 
-		Fl_Button* bt = new Fl_Button(345, 95, 125, 45, "\346\214\211\347\274\226\345\217\267\346\237\245\350\257\242");
+		Fl_Button* bt = new Fl_Button(345, 95, 125, 45, "\346\214\211\345\220\215\345\255\227\346\237\245\350\257\242");
 		bt->callback((Fl_Callback*)QueryEmployeePage::buttonCallBack,(void*)QUERY_BY_NAME);
     } // Fl_Button* o
     { 

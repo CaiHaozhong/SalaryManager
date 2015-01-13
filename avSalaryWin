@@ -1,0 +1,41 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0303 
+header_name {.h} 
+code_name {.cxx}
+Function {make_window()} {open
+} {
+  Fl_Window {} {
+    label {基本工资} open selected
+    xywh {187 262 444 251} type Double visible
+  } {
+    Fl_Group {} {open
+      xywh {30 20 400 50} box FLAT_BOX color 159
+    } {
+      Fl_Box {} {
+        label {部门名称：}
+        xywh {30 20 120 50}
+      }
+      Fl_Box {} {
+        label {部门人数：}
+        xywh {255 20 120 50}
+      }
+      Fl_Box departmentNameBox {
+        xywh {120 20 150 50}
+      }
+      Fl_Box personCountBox {
+        xywh {355 20 55 50}
+      }
+    }
+    Fl_Box {} {
+      label {部门平均工资：}
+      xywh {100 104 120 56}
+    }
+    Fl_Button {} {
+      label {确定}
+      xywh {165 180 110 50}
+    }
+    Fl_Box avgSalaryBox {
+      xywh {205 104 125 56}
+    }
+  }
+} 

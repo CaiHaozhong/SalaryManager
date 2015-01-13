@@ -8,17 +8,17 @@ class queryEmployeePage {open
   } {
     Fl_Window {} {
       label {员工管理} open selected
-      xywh {432 326 541 513} type Double visible
+      xywh {436 330 533 505} type Double visible
     } {
       Fl_Box {} {
         xywh {45 60 465 200} box THIN_UP_BOX color 34
       }
       Fl_Input {} {
-        label {员工编号：}
+        label {员工名字：}
         xywh {129 95 200 40}
       }
       Fl_Button {} {
-        label {按编号查询}
+        label {按名字查询}
         xywh {345 95 125 45}
       }
       Fl_Box {} {

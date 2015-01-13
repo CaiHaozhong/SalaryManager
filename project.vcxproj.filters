@@ -69,6 +69,15 @@
     <ClInclude Include="Data\SalaryType.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Page\salaryDisplayPage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Page\ShouldAddAndSubPage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\AlterationData.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SQLiteCpp\Column.cpp">
@@ -117,6 +126,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Data\SalaryType.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page\salaryDisplayPage.cxx">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Page\ShouldAddAndSubPage.cxx">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\AlterationData.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
